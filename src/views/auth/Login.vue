@@ -79,9 +79,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-#socialLogins {
-  margin-bottom: 1rem;
-}
-</style>

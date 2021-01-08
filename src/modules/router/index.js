@@ -29,17 +29,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  checkAuth(to, next);
-});
+  let ok = await checkAuth(to);
 
-async function checkAuth(to, next) {
-  let allowAnonymous = to.matched.some((record) => record.meta.anonymous);
-
-  let ok = allowAnonymous || false; // TODO: check if user is logged in
-  if (!ok) {
+  if (ok) {
+    next();
+  } else {
     console.log("User not logged in, redirecting to login page");
     next({ name: routeNames.login });
   }
+});
+
+async function checkAuth(to) {
+  let allowAnonymous = to.matched.some((record) => record.meta.anonymous);
+
+  let ok = allowAnonymous || false; // TODO: check if user is logged in
 
   return ok;
 }
