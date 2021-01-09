@@ -1,11 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import { getCurrentUser } from "../firebase";
+
+import About from "../../views/About.vue";
 import Index from "../../views/Index.vue";
 import Login from "../../views/auth/Login.vue";
 
 Vue.use(VueRouter);
 
 const routeNames = {
+  about: "about",
   index: "index",
   login: "login",
 };
@@ -25,6 +29,12 @@ const router = new VueRouter({
       component: Login,
       meta: { anonymous: true },
     },
+    {
+      path: "/about",
+      name: routeNames.about,
+      component: About,
+      meta: { anonymous: true },
+    },
   ],
 });
 
@@ -42,7 +52,7 @@ router.beforeEach(async (to, from, next) => {
 async function checkAuth(to) {
   let allowAnonymous = to.matched.some((record) => record.meta.anonymous);
 
-  let ok = allowAnonymous || false; // TODO: check if user is logged in
+  let ok = allowAnonymous || (await getCurrentUser()) != null;
 
   return ok;
 }

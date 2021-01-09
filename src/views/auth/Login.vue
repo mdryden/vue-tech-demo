@@ -1,51 +1,54 @@
 <template>
   <div class="login">
-    <h1>Log in to your account</h1>
-    <section id="loginForm">
-      <form ref="form" @submit.prevent="login">
-        <div>
-          <input
-            id="email"
-            type="text"
-            v-model="email"
-            placeholder="Email"
-            autocomplete="email"
-            required
-          />
-        </div>
-        <div>
-          <input
-            id="password"
-            type="password"
-            v-model="password"
-            placeholder="Password"
-            autocomplete="current-password"
-            required
-          />
-        </div>
-        <div>
-          <button id="submit" type="submit" class="">
+    <div class="">
+      <h4>Log in to your account</h4>
+      <section id="loginForm">
+        <form ref="form" @submit.prevent="login">
+          <div>
+            <input
+              id="email"
+              type="text"
+              v-model="email"
+              placeholder="Email"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div>
+            <input
+              id="password"
+              type="password"
+              v-model="password"
+              placeholder="Password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <button id="submit" type="submit">
             Log in
           </button>
-        </div>
-      </form>
-    </section>
-
-    <p class="text-center">
-      Not signed up yet?
-      <router-link to="/signup">Sign Up</router-link>
-    </p>
+        </form>
+      </section>
+    </div>
   </div>
 </template>
 
+<style scoped>
+input,
+button {
+  margin: 0.5em;
+}
+button {
+  display: block;
+  width: 15em;
+  padding-top: 0.5em;
+  padding-bottom: 0.9em;
+}
+</style>
 <script>
 import { auth } from "../../modules/firebase";
-
 export default {
   name: "login",
-  props: {
-    returnUrl: String,
-  },
   components: {},
   data() {
     return {
@@ -60,10 +63,7 @@ export default {
           this.email,
           this.password
         );
-
-        let target = this.returnUrl || "/";
-
-        this.$router.replace(target);
+        this.$router.replace("/");
       } catch (exception) {
         console.error(exception.message);
         alert(exception.message);
