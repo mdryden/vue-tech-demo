@@ -145,7 +145,7 @@ export default {
 
   // watch allows you to trigger events when props, data, or computed properties change
   watch: {
-    // vue components are created asyncronously, so it's not certain whether we will
+    // vue components are created asynchronously, so it's not certain whether we will
     // have access to the uid when the component is created, or slightly after
     // a watcher that fires once immediately allows you to "wait" until the value is ready
     uid: {
