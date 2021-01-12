@@ -1,8 +1,12 @@
 <template>
   <div>
     <section id="notes" v-if="!creating">
-      <h1>{{ noteCount }} {{ noteLabel }}</h1>
+      <!-- Note :data-count - this is shorthand for v-bind:data-count -->
+      <!-- Also note: noteCount and noteLabel are computed properties, so they are actually functions, but here
+      they look the same as data properties -->
+      <h1 :data-count="noteCount">{{ noteCount }} {{ noteLabel }}</h1>
       <p v-if="noteCount === 0">You have no notes</p>
+      <!-- Note @click - this is shorthand for v-on:click -->
       <button @click="createNote()">New</button>
       <!-- v-for requires that you give it a key property (I think it can be an index) -->
       <!-- I believe it's used to keep track of when to update the DOM -->

@@ -1,7 +1,7 @@
 import firebaseApp from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-import store from "../store";
+import store from "./store";
 
 const apiKey = process.env.VUE_APP_FIREBASE_API_KEY;
 const project = process.env.VUE_APP_FIREBASE_PROJECT;

@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { getCurrentUser } from "../firebase";
+import { getCurrentUser } from "./firebase";
 
-import About from "../../views/About.vue";
-import Index from "../../views/Index.vue";
-import Login from "../../views/auth/Login.vue";
+import About from "../views/About.vue";
+import Index from "../views/Index.vue";
+import Login from "../views/auth/Login.vue";
 
 Vue.use(VueRouter);
 
